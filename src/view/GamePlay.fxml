@@ -41,26 +41,26 @@
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <ImageView fx:id="card01" fitHeight="108.0" fitWidth="104.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="1" />
-                  <ImageView fx:id="card11" fitHeight="108.0" fitWidth="104.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                  <ImageView fx:id="card21" fitHeight="108.0" fitWidth="104.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-                  <ImageView fx:id="card31" fitHeight="108.0" fitWidth="104.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.rowIndex="1" />
-                  <ImageView fx:id="card41" fitHeight="108.0" fitWidth="104.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4" GridPane.rowIndex="1" />
-                  <ImageView fx:id="card02" fitHeight="108.0" fitWidth="104.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="2" />
-                  <ImageView fx:id="card12" fitHeight="108.0" fitWidth="104.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                  <ImageView fx:id="card22" fitHeight="108.0" fitWidth="104.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-                  <ImageView fx:id="card32" fitHeight="108.0" fitWidth="104.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.rowIndex="2" />
-                  <ImageView fx:id="card42" fitHeight="108.0" fitWidth="104.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4" GridPane.rowIndex="2" />
-                  <ImageView fx:id="card03" fitHeight="108.0" fitWidth="104.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="3" />
-                  <ImageView fx:id="card13" fitHeight="108.0" fitWidth="104.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                  <ImageView fx:id="card23" fitHeight="108.0" fitWidth="104.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.rowIndex="3" />
-                  <ImageView fx:id="card33" fitHeight="108.0" fitWidth="104.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.rowIndex="3" />
-                  <ImageView fx:id="card43" fitHeight="108.0" fitWidth="104.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4" GridPane.rowIndex="3" />
-                  <ImageView fx:id="card00" fitHeight="108.0" fitWidth="104.0" onMouseClicked="#flipCard" pickOnBounds="true" preserveRatio="true" />
-                  <ImageView fx:id="card10" fitHeight="108.0" fitWidth="104.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" />
-                  <ImageView fx:id="card20" fitHeight="108.0" fitWidth="104.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" />
-                  <ImageView fx:id="card30" fitHeight="108.0" fitWidth="104.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" />
-                  <ImageView fx:id="card40" fitHeight="108.0" fitWidth="104.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4" />
+                  <ImageView fx:id="card6" fitHeight="108.0" fitWidth="104.0" onMouseClicked="#flipCard" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="1" />
+                  <ImageView fx:id="card7" fitHeight="108.0" fitWidth="104.0" onMouseClicked="#flipCard" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <ImageView fx:id="card8" fitHeight="108.0" fitWidth="104.0" onMouseClicked="#flipCard" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                  <ImageView fx:id="card9" fitHeight="108.0" fitWidth="104.0" onMouseClicked="#flipCard" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+                  <ImageView fx:id="card10" fitHeight="108.0" fitWidth="104.0" onMouseClicked="#flipCard" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4" GridPane.rowIndex="1" />
+                  <ImageView fx:id="card11" fitHeight="108.0" fitWidth="104.0" onMouseClicked="#flipCard" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="2" />
+                  <ImageView fx:id="card12" fitHeight="108.0" fitWidth="104.0" onMouseClicked="#flipCard" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <ImageView fx:id="card13" fitHeight="108.0" fitWidth="104.0" onMouseClicked="#flipCard" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                  <ImageView fx:id="card14" fitHeight="108.0" fitWidth="104.0" onMouseClicked="#flipCard" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+                  <ImageView fx:id="card15" fitHeight="108.0" fitWidth="104.0" onMouseClicked="#flipCard" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4" GridPane.rowIndex="2" />
+                  <ImageView fx:id="card16" fitHeight="108.0" fitWidth="104.0" onMouseClicked="#flipCard" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="3" />
+                  <ImageView fx:id="card17" fitHeight="108.0" fitWidth="104.0" onMouseClicked="#flipCard" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                  <ImageView fx:id="card18" fitHeight="108.0" fitWidth="104.0" onMouseClicked="#flipCard" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+                  <ImageView fx:id="card19" fitHeight="108.0" fitWidth="104.0" onMouseClicked="#flipCard" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.rowIndex="3" />
+                  <ImageView fx:id="card20" fitHeight="108.0" fitWidth="104.0" onMouseClicked="#flipCard" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4" GridPane.rowIndex="3" />
+                  <ImageView fx:id="card1" fitHeight="108.0" fitWidth="104.0" onMouseClicked="#flipCard" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="card2" fitHeight="108.0" fitWidth="104.0" onMouseClicked="#flipCard" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" />
+                  <ImageView fx:id="card3" fitHeight="108.0" fitWidth="104.0" onMouseClicked="#flipCard" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" />
+                  <ImageView fx:id="card4" fitHeight="108.0" fitWidth="104.0" onMouseClicked="#flipCard" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" />
+                  <ImageView fx:id="card5" fitHeight="108.0" fitWidth="104.0" onMouseClicked="#flipCard" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4" />
                </children>
             </GridPane>
          </children>

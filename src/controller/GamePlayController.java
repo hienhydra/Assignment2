@@ -8,89 +8,119 @@ import javafx.fxml.Initializable;
 
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.GridPane;
+import model.Card;
 
 
 import java.net.URL;
-import java.util.Collection;
-import java.util.ResourceBundle;
+import java.util.*;
 
 public class GamePlayController implements Initializable
 {
     @FXML
-        private ImageView card00;
+        private ImageView card1, card2, card3, card4, card5, card6, card7, card8,
+            card9, card10, card11, card12, card13, card14, card15, card16, card17, card18, card19, card20;
     @FXML
-        private ImageView card01;
-    @FXML
-        private ImageView card02;
-    @FXML
-        private ImageView card03;
-    @FXML
-        private ImageView card10;
-    @FXML
-        private ImageView card11;
-    @FXML
-        private ImageView card12;
-    @FXML
-        private ImageView card13;
-    @FXML
-        private ImageView card20;
-    @FXML
-        private ImageView card21;
-    @FXML
-        private ImageView card22;
-    @FXML
-        private ImageView card23;
-    @FXML
-        private ImageView card30;
-    @FXML
-        private ImageView card31;
-    @FXML
-        private ImageView card32;
-    @FXML
-        private ImageView card33;
-    @FXML
-        private ImageView card40;
-    @FXML
-        private ImageView card41;
-    @FXML
-        private ImageView card42;
-    @FXML
-        private ImageView card43;
+        private GridPane gamePlay;
 
-    public static ObservableList<ImageView> cardList = FXCollections.observableArrayList();
-    public static int i = 1;
+    public static ObservableList<ImageView> cardViewList = FXCollections.observableArrayList();
+    public static ArrayList<Card> cardList = new ArrayList<>();
+    private static String faceDownImage = "File:src/img/0.png";
+    private static int cardIndex;
+    private static Card pickedCard1 = null;
+    private static Card pickedCard2 = null;
 
-    public void flipCard()
+    public void flipCard(MouseEvent event)
     {
-        initializeCardList();
-        try
+        if (pickedCard2 == null)
         {
-            cardList.get(0).setImage(new Image("File:src/img/1.png"));
-        }
-        catch (Exception e)
-        {
-            System.out.println("here");
-        }
+            ImageView sourceCardView = (ImageView) event.getSource();
+            cardIndex = (Integer.parseInt(sourceCardView.getId().replace("card", "")) - 1);
+            System.out.println("cardid = " + sourceCardView.getId());
+            System.out.println(sourceCardView.getId() + "Image =  " + cardList.get(cardIndex).getImage());
+            try
+            {
+                sourceCardView.setImage(new Image(cardList.get(cardIndex).getImage()));
+            } catch (Exception e)
+            {
+                System.out.println("Image Not Found.");
+            }
 
+            if (pickedCard1 == null)
+                pickedCard1 = cardList.get(cardIndex);
+            else
+                pickedCard2 = cardList.get(cardIndex);
+
+            if (pickedCard1 != null && pickedCard2 != null)
+            {
+                if (pickedCard1.compareTo(pickedCard2))
+                {
+                    System.out.println("here2 = " + cardList.get(cardIndex).number);
+                    cardViewList.get(pickedCard1.getPosition()).setImage(null);
+                    cardViewList.get(pickedCard2.getPosition()).setImage(null);
+                    cardViewList.get(pickedCard1.getPosition()).setOnMouseClicked(null);
+                    cardViewList.get(pickedCard2.getPosition()).setOnMouseClicked(null);
+                }
+                pickedCard1 = null;
+                pickedCard2 = null;
+            }
+            TimerTask task = new TimerTask()
+            {
+                @Override
+                public void run()
+                {
+                    if (sourceCardView.getImage() != null)
+                        sourceCardView.setImage(new Image(faceDownImage));
+                }
+            };
+
+            Timer timer = new Timer();
+            timer.schedule(task, 1000);
+        }
     }
 
     @Override
     public void initialize(URL url, ResourceBundle rb)
     {
         initializeCardList();
+        initializeCardViewList();
     }
 
     public void initializeCardList()
     {
-        cardList.addAll(card00, card01, card02, card03, card10, card11, card12, card13,
-                card20, card21, card22, card23, card30, card31, card32, card33, card40, card41, card42, card43);
-        cardList.forEach((card) ->
+        int cardNumber = -1;
+        int []checkList = new int[20];
+        for (int i = 0; i < 20; i++)
         {
-            card.setImage(new Image("File:src/img/" + i + ".png"));
-            if (i == 10)
-                i = 1;
-            else
-                i++;
+            do
+            {
+                cardNumber = (int) (Math.random() * 10) + 1;
+            } while(noOfOccurrences(checkList, cardNumber) >= 2);
+            checkList[i] = cardNumber;
+            System.out.println("card[" + i + "] = " + cardNumber);
+            cardList.add(new Card(cardNumber, i));
+        }
+    }
+
+    private int noOfOccurrences(int []list, int number)
+    {
+        int count = 0;
+        for (int i : list)
+        {
+            if (i == number)
+                count++;
+        }
+        return count;
+    }
+
+    public void initializeCardViewList()
+    {
+        cardViewList.addAll(card1, card2, card3, card4, card5, card6, card7, card8,
+                card9, card10, card11, card12, card13, card14, card15, card16, card17, card18, card19, card20);
+        cardViewList.forEach((card) ->
+        {
+            card.setImage(new Image(faceDownImage));
         });
     }
 }
