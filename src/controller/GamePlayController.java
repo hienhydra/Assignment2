@@ -1,19 +1,36 @@
+/*
+  RMIT University Vietnam
+  Course: INTE2512 Object-Oriented Programming
+  Semester: 2019C
+  Assessment: Assignment 2
+  Author: Le Quang Hien
+  ID: s3695516
+  Created  date: 13/12/2019
+  Last modified: 13/12/2019
+  Acknowledgement:
+*/
+
 package controller;
 
-
+import javafx.animation.KeyFrame;
+import javafx.animation.KeyValue;
+import javafx.animation.Timeline;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 
+import javafx.scene.control.ProgressBar;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
+import javafx.util.Duration;
 import model.Card;
 
-
-import javax.swing.*;
+import java.io.File;
 import java.net.URL;
 import java.util.*;
 import java.util.Timer;
@@ -25,7 +42,8 @@ public class GamePlayController implements Initializable
             card9, card10, card11, card12, card13, card14, card15, card16, card17, card18, card19, card20;
     @FXML
         private GridPane gamePlay;
-
+    @FXML
+        private ProgressBar timeBar;
     public static ObservableList<ImageView> cardViewList = FXCollections.observableArrayList();
     public static ArrayList<Card> cardList = new ArrayList<>();
     private static String faceDownImage = "File:src/img/0.png";
@@ -34,6 +52,7 @@ public class GamePlayController implements Initializable
     private static Card selectedCard2 = null;
     private static int noOfSelectedCards = 0;
     private static int delayTime = 3000;
+
     public void flipCard(MouseEvent event)
     {
         if (noOfSelectedCards < 2)
@@ -58,11 +77,11 @@ public class GamePlayController implements Initializable
             Timer timer = new Timer();
             timer.schedule(task, delayTime);
         }
+        isGameEnded();
     }
 
     private void compareCards()
     {
-        boolean results = false;
         if (noOfSelectedCards == 1)
             selectedCard1 = cardList.get(cardIndex);
         else
@@ -75,13 +94,25 @@ public class GamePlayController implements Initializable
             System.out.println("card2 = " + selectedCard2.getImage());
             if (selectedCard1.compareTo(selectedCard2) && (selectedCard1.getPosition() != selectedCard2.getPosition()))
             {
-                System.out.println("here 2 = ");
                 cardViewList.get(selectedCard1.getPosition()).setImage(null);
                 cardViewList.get(selectedCard2.getPosition()).setImage(null);
                 cardViewList.get(selectedCard1.getPosition()).setOnMouseClicked(null);
                 cardViewList.get(selectedCard2.getPosition()).setOnMouseClicked(null);
+                cardList.get(selectedCard1.getPosition()).isRemoved = true;
+                cardList.get(selectedCard2.getPosition()).isRemoved = true;
             }
         }
+    }
+
+    public boolean isGameEnded()
+    {
+        for (Card card: cardList)
+        {
+            if (!card.isRemoved)
+                return  false;
+        }
+        System.out.println("game ended");
+        return true;
     }
 
     @Override
@@ -89,6 +120,7 @@ public class GamePlayController implements Initializable
     {
         initializeCardList();
         initializeCardViewList();
+        initializeTimeBar();
     }
 
     public void initializeCardList()
@@ -125,5 +157,14 @@ public class GamePlayController implements Initializable
         {
             card.setImage(new Image(faceDownImage));
         });
+    }
+
+    public void initializeTimeBar()
+    {
+        Timeline timeline = new Timeline();
+        KeyValue keyValue = new KeyValue(timeBar.progressProperty(), 1.0);
+        KeyFrame keyFrame = new KeyFrame(new Duration(120000), keyValue);
+        timeline.getKeyFrames().add(keyFrame);
+        timeline.play();
     }
 }

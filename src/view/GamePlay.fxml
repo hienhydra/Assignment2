@@ -1,29 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
+<?import javafx.geometry.Point3D?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ProgressBar?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
 
-<Pane cache="true" cacheHint="SCALE" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.GamePlayController">
+<Pane cache="true" cacheHint="SCALE" prefHeight="566.0" prefWidth="837.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.GamePlayController">
    <children>
-      <ImageView pickOnBounds="true">
+      <ImageView fitHeight="566.0" fitWidth="837.0" pickOnBounds="true">
          <image>
             <Image url="@../img/background.jpg" />
          </image>
       </ImageView>
-      <GridPane prefHeight="526.0" prefWidth="653.0">
+      <GridPane prefHeight="566.0" prefWidth="837.0">
         <columnConstraints>
-          <ColumnConstraints hgrow="SOMETIMES" maxWidth="314.0" minWidth="10.0" prefWidth="48.999996185302734" />
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="604.6666679382324" minWidth="10.0" prefWidth="511.00000381469727" />
-          <ColumnConstraints hgrow="SOMETIMES" maxWidth="604.6666679382324" minWidth="10.0" prefWidth="86.00001017252612" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="314.0" minWidth="10.0" prefWidth="21.333331425984696" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="663.6666444142659" minWidth="10.0" prefWidth="480.00000000000006" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="604.6666679382324" minWidth="10.0" prefWidth="293.33333333333337" />
         </columnConstraints>
         <rowConstraints>
-          <RowConstraints maxHeight="177.0" minHeight="0.0" prefHeight="50.33333333333334" vgrow="SOMETIMES" />
-          <RowConstraints maxHeight="481.3333333333333" minHeight="10.0" prefHeight="425.99997965494794" vgrow="SOMETIMES" />
-          <RowConstraints maxHeight="73.33335367838538" minHeight="10.0" prefHeight="73.33335367838538" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="177.0" minHeight="0.0" prefHeight="31.33333079020182" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="481.3333333333333" minHeight="10.0" prefHeight="420.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="115.99999999999994" minHeight="10.0" prefHeight="115.99999999999994" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
             <GridPane fx:id="gamePlay" GridPane.columnIndex="1" GridPane.rowIndex="1">
@@ -63,6 +69,34 @@
                   <ImageView fx:id="card5" fitHeight="108.0" fitWidth="104.0" onMouseClicked="#flipCard" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4" />
                </children>
             </GridPane>
+            <VBox prefHeight="343.0" prefWidth="89.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
+               <children>
+                  <ProgressBar fx:id="timeBar" prefHeight="44.0" prefWidth="301.0" progress="0.0">
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                     <rotationAxis>
+                        <Point3D x="1.0" />
+                     </rotationAxis>
+                  </ProgressBar>
+                  <Label prefHeight="40.0" prefWidth="151.0" text="d" textAlignment="CENTER">
+                     <VBox.margin>
+                        <Insets left="150.0" />
+                     </VBox.margin>
+                  </Label>
+                  <Button contentDisplay="GRAPHIC_ONLY" mnemonicParsing="false" prefHeight="36.0" prefWidth="62.0" text="Button">
+                     <VBox.margin>
+                        <Insets left="240.0" top="10.0" />
+                     </VBox.margin>
+                     <graphic>
+                        <ImageView fitHeight="27.0" fitWidth="46.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../img/soundon.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+               </children></VBox>
          </children>
       </GridPane>
    </children>
