@@ -13,8 +13,10 @@ import javafx.scene.layout.GridPane;
 import model.Card;
 
 
+import javax.swing.*;
 import java.net.URL;
 import java.util.*;
+import java.util.Timer;
 
 public class GamePlayController implements Initializable
 {
@@ -28,55 +30,57 @@ public class GamePlayController implements Initializable
     public static ArrayList<Card> cardList = new ArrayList<>();
     private static String faceDownImage = "File:src/img/0.png";
     private static int cardIndex;
-    private static Card pickedCard1 = null;
-    private static Card pickedCard2 = null;
-
+    private static Card selectedCard1 = null;
+    private static Card selectedCard2 = null;
+    private static int noOfSelectedCards = 0;
+    private static int delayTime = 3000;
     public void flipCard(MouseEvent event)
     {
-        if (pickedCard2 == null)
+        if (noOfSelectedCards < 2)
         {
+            noOfSelectedCards++;
             ImageView sourceCardView = (ImageView) event.getSource();
             cardIndex = (Integer.parseInt(sourceCardView.getId().replace("card", "")) - 1);
-            System.out.println("cardid = " + sourceCardView.getId());
-            System.out.println(sourceCardView.getId() + "Image =  " + cardList.get(cardIndex).getImage());
-            try
-            {
-                sourceCardView.setImage(new Image(cardList.get(cardIndex).getImage()));
-            } catch (Exception e)
-            {
-                System.out.println("Image Not Found.");
-            }
+            sourceCardView.setImage(new Image(cardList.get(cardIndex).getImage()));
 
-            if (pickedCard1 == null)
-                pickedCard1 = cardList.get(cardIndex);
-            else
-                pickedCard2 = cardList.get(cardIndex);
-
-            if (pickedCard1 != null && pickedCard2 != null)
-            {
-                if (pickedCard1.compareTo(pickedCard2))
-                {
-                    System.out.println("here2 = " + cardList.get(cardIndex).number);
-                    cardViewList.get(pickedCard1.getPosition()).setImage(null);
-                    cardViewList.get(pickedCard2.getPosition()).setImage(null);
-                    cardViewList.get(pickedCard1.getPosition()).setOnMouseClicked(null);
-                    cardViewList.get(pickedCard2.getPosition()).setOnMouseClicked(null);
-                }
-                pickedCard1 = null;
-                pickedCard2 = null;
-            }
+            compareCards();
             TimerTask task = new TimerTask()
             {
                 @Override
                 public void run()
-                {
-                    if (sourceCardView.getImage() != null)
-                        sourceCardView.setImage(new Image(faceDownImage));
-                }
+                    {
+                        if (sourceCardView.getImage() != null)
+                            sourceCardView.setImage(new Image(faceDownImage));
+                        noOfSelectedCards--;
+                    }
             };
 
             Timer timer = new Timer();
-            timer.schedule(task, 1000);
+            timer.schedule(task, delayTime);
+        }
+    }
+
+    private void compareCards()
+    {
+        boolean results = false;
+        if (noOfSelectedCards == 1)
+            selectedCard1 = cardList.get(cardIndex);
+        else
+            selectedCard2 = cardList.get(cardIndex);
+        System.out.println("number of Selected Cards = " + noOfSelectedCards);
+        if(noOfSelectedCards == 2)
+        {
+            System.out.println("here 1 = ");
+            System.out.println("card1 = " + selectedCard1.getImage());
+            System.out.println("card2 = " + selectedCard2.getImage());
+            if (selectedCard1.compareTo(selectedCard2) && (selectedCard1.getPosition() != selectedCard2.getPosition()))
+            {
+                System.out.println("here 2 = ");
+                cardViewList.get(selectedCard1.getPosition()).setImage(null);
+                cardViewList.get(selectedCard2.getPosition()).setImage(null);
+                cardViewList.get(selectedCard1.getPosition()).setOnMouseClicked(null);
+                cardViewList.get(selectedCard2.getPosition()).setOnMouseClicked(null);
+            }
         }
     }
 
@@ -98,7 +102,6 @@ public class GamePlayController implements Initializable
                 cardNumber = (int) (Math.random() * 10) + 1;
             } while(noOfOccurrences(checkList, cardNumber) >= 2);
             checkList[i] = cardNumber;
-            System.out.println("card[" + i + "] = " + cardNumber);
             cardList.add(new Card(cardNumber, i));
         }
     }
