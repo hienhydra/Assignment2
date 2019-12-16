@@ -22,23 +22,15 @@ import java.util.ResourceBundle;
 
 public class MainMenuController implements Initializable
 {
+    private static final String gamePlayWindow = "../view/GamePlay.fxml";
 
     @FXML
         private static Button soundBt;
-
     @FXML
-    private void startGameBtHandler(ActionEvent event) {
-        Stage currentStage = (Stage) ((Node)event.getSource()).getScene().getWindow();
-        try
-        {
-            Parent root2 = FXMLLoader.load(getClass().getResource("../view/GamePlay.fxml"));
-            currentStage.setScene(new Scene(root2));
-        }
-        catch (IOException e)
-        {
-            e.printStackTrace();
-        }
-
+    private void startGameBtHandler(ActionEvent event)
+    {
+        WindowController window = new WindowController((Stage) ((Node)event.getSource()).getScene().getWindow());
+        window.load(gamePlayWindow);
     }
     @Override
     public void initialize(URL location, ResourceBundle resources)

@@ -62,6 +62,7 @@ public class GamePlayController implements Initializable
     private static final String loseSound = "src/audio/lose.mp3";
     private static final String winSound = "src/audio/win.mp3";
     private static final String faceDownImage = "File:src/img/0.png";
+    private static final String gamePlayWindow = "../view/GamePlay.fxml";
 
     //  create variables for game play
     public static ObservableList<ImageView> cardViewList = FXCollections.observableArrayList();
@@ -199,18 +200,12 @@ public class GamePlayController implements Initializable
     }
 
     @FXML
-    private void startGameBtHandler(ActionEvent event) {
-        Stage currentStage = (Stage) ((Node)event.getSource()).getScene().getWindow();
-        try
-        {
-            Parent root2 = FXMLLoader.load(getClass().getResource("../view/GamePlay.fxml"));
-            currentStage.setScene(new Scene(root2));
-        }
-        catch (IOException e)
-        {
-            e.printStackTrace();
-        }
+    private void playAgainBtHandler(ActionEvent event)
+    {
+        currentTime = 1;
 
+        WindowController window = new WindowController((Stage) ((Node)event.getSource()).getScene().getWindow());
+        window.load(gamePlayWindow);
     }
 
     private int noOfOccurrences(int []list, int number)
