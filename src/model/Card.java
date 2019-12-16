@@ -19,7 +19,6 @@ public class Card
     private int position;
     public boolean isRemoved = false;
 
-    public Card() {}
     public Card(int number, int position)
     {
         this.position = position;
@@ -35,11 +34,6 @@ public class Card
     public String getImage()
     {
         return image;
-    }
-
-    public int getCardID()
-    {
-        return cardId;
     }
 
     public boolean compareTo(Card anotherCard)

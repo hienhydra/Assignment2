@@ -21,6 +21,7 @@ public class CardController
     private Card selectedCard1 = null;
     private Card selectedCard2 = null;
     private int noOfSelectedCards = 0;
+    private boolean isComparing = true;
     private int delayTime = MainMenuController.selectedLevel * 1000;
 
     public void initialize()
@@ -31,10 +32,7 @@ public class CardController
 
     public void initializeCardViewList()
     {
-        for(int i = 0; i < 20; i++)
-        {
-            cardViewList.get(i).setImage(new Image(faceDownImage));
-        }
+        cardViewList.forEach(card -> card.setImage(new Image(faceDownImage)));
     }
 
     public void initializeCardList()
@@ -57,24 +55,27 @@ public class CardController
         if (noOfSelectedCards < 2)
         {
             noOfSelectedCards++;
+            isComparing = !isComparing;
             ImageView sourceCardView = (ImageView) event.getSource();
             cardIndex = (Integer.parseInt(sourceCardView.getId().replace("card", "")) - 1);
             sourceCardView.setImage(new Image(cardList.get(cardIndex).getImage()));
 
-            compareCards();
-            TimerTask task = new TimerTask()
+            if (!compareCards())
             {
-                @Override
-                public void run()
+                TimerTask task = new TimerTask()
                 {
-                    if (sourceCardView.getImage() != null)
-                        sourceCardView.setImage(new Image(faceDownImage));
-                    noOfSelectedCards--;
-                }
-            };
+                    @Override
+                    public void run()
+                    {
+                        if (sourceCardView.getImage() != null)
+                            sourceCardView.setImage(new Image(faceDownImage));
+                        noOfSelectedCards--;
+                    }
+                };
 
-            Timer timer = new Timer();
-            timer.schedule(task, delayTime);
+                Timer timer = new Timer();
+                timer.schedule(task, delayTime);
+            }
         }
     }
     private static int noOfOccurrences(int []list, int number)
@@ -88,14 +89,14 @@ public class CardController
         return count;
     }
 
-    private void compareCards()
+    private boolean compareCards()
     {
-        if (noOfSelectedCards == 1)
+        boolean result = false;
+        if (!isComparing)
             selectedCard1 = cardList.get(cardIndex);
         else
-            selectedCard2 = cardList.get(cardIndex);
-        if(noOfSelectedCards == 2)
         {
+            selectedCard2 = cardList.get(cardIndex);
             if (selectedCard1.compareTo(selectedCard2) && (selectedCard1.getPosition() != selectedCard2.getPosition()))
             {
                 cardViewList.get(selectedCard1.getPosition()).setImage(null);
@@ -104,8 +105,11 @@ public class CardController
                 cardViewList.get(selectedCard2.getPosition()).setOnMouseClicked(null);
                 cardList.get(selectedCard1.getPosition()).isRemoved = true;
                 cardList.get(selectedCard2.getPosition()).isRemoved = true;
+                noOfSelectedCards--;
+                result = true;
             }
         }
+        return result;
     }
 
     public boolean isAllCardsRemoved()

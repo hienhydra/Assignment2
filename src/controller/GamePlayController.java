@@ -16,35 +16,20 @@ import javafx.animation.AnimationTimer;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.GridPane;
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
-import javafx.stage.Stage;
 import javafx.util.Duration;
-import model.Card;
 
-import java.awt.*;
-import java.io.File;
-import java.io.IOException;
 import java.net.URL;
 import java.util.*;
-import java.util.Timer;
+
 
 public class GamePlayController implements Initializable
 {
@@ -56,25 +41,26 @@ public class GamePlayController implements Initializable
     @FXML
         private ProgressBar timeBar;
     @FXML
-        private Button soundBt, playAgainBt;
+        private Button playAgainBt;
     @FXML
         private Label scoreLabel, timerLabel;
 
     //
-    private static final String backGroundSound = "src/audio/music.mp3";
-    private static final String loseSound = "src/audio/lose.mp3";
-    private static final String winSound = "src/audio/win.mp3";
+    private final String backGroundSound = "src/audio/music.mp3";
+    private final String loseSound = "src/audio/lose.mp3";
+    private final String winSound = "src/audio/win.mp3";
 
     //  create variables for game play
     private static int score = 0;
-    private static Timeline timeline = null;
-    private static AnimationTimer animationTimer = null;
-    private static int currentTime;
+    private Timeline timeline = null;
+    private AnimationTimer animationTimer = null;
+    private int currentTime;
     CardController cardController = null;
 
     @Override
     public void initialize(URL url, ResourceBundle rb)
     {
+        System.out.println("score = " + score);
         scoreLabel.setText("Score: " + score +  " points");
         currentTime = 1;
         cardController = new CardController();
@@ -168,13 +154,17 @@ public class GamePlayController implements Initializable
 
     public void quitGameBtHandler(ActionEvent event)
     {
+        animationTimer.stop();
+        timeline.stop();
         ButtonController.quitGameBtHandler(event);
     }
 
     public void playAgainBtHandler(ActionEvent event)
     {
-        currentTime = 1;
-        ButtonController.startGameBtHandler(event);
+        System.out.println("score = " + score);
+        animationTimer.stop();
+        timeline.stop();
         MediaController.playNewAudio(backGroundSound);
+        ButtonController.startGameBtHandler(event);
     }
 }
