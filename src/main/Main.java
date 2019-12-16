@@ -27,7 +27,7 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception{
         Parent root1 = FXMLLoader.load(getClass().getResource("../view/MainMenu.fxml"));
 
-        primaryStage.setTitle("Menu");
+        primaryStage.setTitle("Flipping Card Game");
         primaryStage.setScene(new Scene(root1));
         primaryStage.setResizable(false);
         primaryStage.show();
