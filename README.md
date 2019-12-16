@@ -6,7 +6,7 @@ Student Name: Le Quang Hien
 Student ID: s3695516
 
 1. INTRODUCTION
-This project is to create a flipping card game. 
+This project is to create a flipping cardModel game. 
 
 2. FEATURES
 - Image Display:Display 10 pairs of photo of 10 favorite U22 Vietnam Football Team randomly in 4 rows X 5 columns
@@ -31,8 +31,8 @@ This software can be run straightly on Intellij using JDK 11 and JavaFX 11
 modules javafx.controls,javafx.fxml,javafx.media must be added to the VM options
 
 4. KNOWN BUGS
-If the player clicks two time on the same card, he or she cannot flip the second card
-and has to wait for the current card faces down.
+If the player clicks two time on the same cardModel, he or she cannot flip the second cardModel
+and has to wait for the current cardModel faces down.
 
 5. ACKNOWLEDGEMENT
 For creating the Time ProgressBar

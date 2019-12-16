@@ -27,7 +27,7 @@ public class MainMenuController implements Initializable
 {
     @FXML
         private ChoiceBox selectLevelBox;
-    ObservableList<String> levelBox = FXCollections.observableArrayList("Easy", "Medium", "Hard");
+    private ObservableList<String> levelBox = FXCollections.observableArrayList("Easy", "Medium", "Hard");
     public static int selectedLevel = 2;
 
     @Override

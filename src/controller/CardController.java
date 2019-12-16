@@ -17,7 +17,7 @@ import javafx.collections.ObservableList;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import model.Card;
+import model.CardModel;
 
 import java.util.ArrayList;
 import java.util.Timer;
@@ -29,10 +29,10 @@ public class CardController
     // declare needed variables
     private final String faceDownImage = "File:src/img/0.png";
     public  ObservableList<ImageView> cardViewList = FXCollections.observableArrayList();
-    private ArrayList<Card> cardList = new ArrayList<>();
+    private ArrayList<CardModel> cardModelList = new ArrayList<>();
     private int cardIndex;
-    private Card selectedCard1 = null;
-    private Card selectedCard2 = null;
+    private CardModel selectedCardModel1 = null;
+    private CardModel selectedCardModel2 = null;
     private int noOfSelectedCards = 0;
     private boolean isComparing = true;
     private int delayTime = MainMenuController.selectedLevel * 1000;
@@ -40,7 +40,7 @@ public class CardController
     // this method is to initialize the cards and their appearances on the game
     public void initialize()
     {
-        initializeCardList();
+        initializeCardModelList();
         initializeCardViewList();
     }
 
@@ -51,7 +51,7 @@ public class CardController
     }
 
     // this method is to assigning cards to positions in the game
-    private void initializeCardList()
+    private void initializeCardModelList()
     {
         int cardNumber;
         int []checkList = new int[20];
@@ -62,7 +62,7 @@ public class CardController
                 cardNumber = (int) (Math.random() * 10) + 1;
             } while(noOfOccurrences(checkList, cardNumber) >= 2);   // check if the card has selected two times
             checkList[i] = cardNumber;                 // assign the card to checkList for later verifying
-            cardList.add(new Card(cardNumber, i));     // add the card to the cardList, index = position - 1;
+            cardModelList.add(new CardModel(cardNumber, i));     // add the card to the cardList, index = position - 1;
         }
     }
 
@@ -75,7 +75,7 @@ public class CardController
             isComparing = !isComparing;
             ImageView sourceCardView = (ImageView) event.getSource();   // get the clickedCard
             cardIndex = (Integer.parseInt(sourceCardView.getId().replace("card", "")) - 1);
-            sourceCardView.setImage(new Image(cardList.get(cardIndex).getImage())); // face up the card
+            sourceCardView.setImage(new Image(cardModelList.get(cardIndex).getImage())); // face up the card
 
             if (!compareCards())            // compare two cards,
             {                               // if they are not the same, flip them again after a delay time
@@ -113,20 +113,20 @@ public class CardController
     {
         boolean result = false;
         if (!isComparing)
-            selectedCard1 = cardList.get(cardIndex);
+            selectedCardModel1 = cardModelList.get(cardIndex);
         else
         {
-            selectedCard2 = cardList.get(cardIndex);
+            selectedCardModel2 = cardModelList.get(cardIndex);
             // avoid the player to click on the same card by checking their position
-            if (selectedCard1.compareTo(selectedCard2) && (selectedCard1.getPosition() != selectedCard2.getPosition()))
+            if (selectedCardModel1.compareTo(selectedCardModel2) && (selectedCardModel1.getPosition() != selectedCardModel2.getPosition()))
             {
                 // if they are match, delete them
-                cardViewList.get(selectedCard1.getPosition()).setImage(null);
-                cardViewList.get(selectedCard2.getPosition()).setImage(null);
-                cardViewList.get(selectedCard1.getPosition()).setOnMouseClicked(null);
-                cardViewList.get(selectedCard2.getPosition()).setOnMouseClicked(null);
-                cardList.get(selectedCard1.getPosition()).isRemoved = true;
-                cardList.get(selectedCard2.getPosition()).isRemoved = true;
+                cardViewList.get(selectedCardModel1.getPosition()).setImage(null);
+                cardViewList.get(selectedCardModel2.getPosition()).setImage(null);
+                cardViewList.get(selectedCardModel1.getPosition()).setOnMouseClicked(null);
+                cardViewList.get(selectedCardModel2.getPosition()).setOnMouseClicked(null);
+                cardModelList.get(selectedCardModel1.getPosition()).isRemoved = true;
+                cardModelList.get(selectedCardModel2.getPosition()).isRemoved = true;
                 noOfSelectedCards--;
                 result = true;
             }
@@ -138,9 +138,9 @@ public class CardController
     // which is needed for the winning condition of the game
     public boolean isAllCardsRemoved()
     {
-        for (Card card: cardList)
+        for (CardModel cardModel : cardModelList)
         {
-            if (!card.isRemoved)
+            if (!cardModel.isRemoved)
                 return  false;
         }
         return true;

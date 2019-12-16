@@ -12,7 +12,7 @@
 
 package model;
 
-public class Card
+public class CardModel
 {
     // declare properties of the card
     private int cardId;
@@ -21,7 +21,7 @@ public class Card
     public boolean isRemoved = false;
 
     // constructor with id and position on the game
-    public Card(int id, int position)
+    public CardModel(int id, int position)
     {
         this.position = position;
         this.cardId = id;
@@ -41,8 +41,8 @@ public class Card
     }
 
     // this method is to compare two card IDs
-    public boolean compareTo(Card anotherCard)
+    public boolean compareTo(CardModel anotherCardModel)
     {
-        return this.cardId == anotherCard.cardId;
+        return this.cardId == anotherCardModel.cardId;
     }
 }

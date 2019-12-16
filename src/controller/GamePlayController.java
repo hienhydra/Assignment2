@@ -79,7 +79,7 @@ public class GamePlayController implements Initializable
     }
 
     // this method is to initialize the TimeBar o the game
-    public void initializeTimeBar()
+    private void initializeTimeBar()
     {
         timeline = new Timeline();
         KeyValue keyValue = new KeyValue(timeBar.progressProperty(), 1.0);
@@ -89,14 +89,14 @@ public class GamePlayController implements Initializable
     }
 
     // this method is to disable the playAgain button when the game is playing
-    public void initializeButtons()
+    private void initializeButtons()
     {
         playAgainBt.setVisible(false);
         playAgainBt.setDisable(true);
     }
 
     // this method is to establish the timer of the game
-    public void initializeTimer()
+    private void initializeTimer()
     {
         animationTimer = new AnimationTimer() {
             private long startTime ;
@@ -127,7 +127,7 @@ public class GamePlayController implements Initializable
     }
 
     // this method is end the current game
-    public void endGame()
+    private void endGame()
     {
         playAgainBt.setVisible(true);
         playAgainBt.setDisable(false);
@@ -146,10 +146,12 @@ public class GamePlayController implements Initializable
     }
 
     // this method is to check if the game is ended
-    public boolean isGameEnded()
+    private boolean isGameEnded()
     {
         // the game is ended either when time is up or all cards have been removed
-        return currentTime <= 0 || cardController.isAllCardsRemoved();
+        if (currentTime <= 0 || cardController.isAllCardsRemoved())
+            return true;
+        return false;
     }
 
     // this method is to control the click action of player on cards
