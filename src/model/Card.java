@@ -14,7 +14,7 @@ package model;
 
 public class Card
 {
-    public int number;
+    private int cardId;
     private String image;
     private int position;
     public boolean isRemoved = false;
@@ -23,13 +23,8 @@ public class Card
     public Card(int number, int position)
     {
         this.position = position;
-        this.number = number;
+        this.cardId = number;
         image = "File:src/img/" + number + ".png";
-    }
-
-    public void setPosition(int position)
-    {
-        this.position = position;
     }
 
     public int getPosition()
@@ -42,8 +37,13 @@ public class Card
         return image;
     }
 
+    public int getCardID()
+    {
+        return cardId;
+    }
+
     public boolean compareTo(Card anotherCard)
     {
-        return this.number == anotherCard.number;
+        return this.cardId == anotherCard.cardId;
     }
 }

@@ -12,6 +12,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
 <Pane cache="true" cacheHint="SCALE" prefHeight="566.0" prefWidth="837.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.GamePlayController">
    <children>
@@ -71,30 +72,60 @@
             </GridPane>
             <VBox prefHeight="343.0" prefWidth="89.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
                <children>
-                  <ProgressBar fx:id="timeBar" prefHeight="44.0" prefWidth="301.0" progress="0.0">
+                  <ProgressBar fx:id="timeBar" prefHeight="44.0" prefWidth="279.0" progress="0.0">
                      <VBox.margin>
-                        <Insets />
+                        <Insets left="10.0" />
                      </VBox.margin>
                      <rotationAxis>
                         <Point3D x="1.0" />
                      </rotationAxis>
                   </ProgressBar>
-                  <Label prefHeight="40.0" prefWidth="151.0" text="d" textAlignment="CENTER">
+                  <Label fx:id="timerLabel" maxHeight="40.0" maxWidth="187.0" prefHeight="40.0" prefWidth="187.0" text="Time left:" textAlignment="CENTER">
                      <VBox.margin>
-                        <Insets left="150.0" />
+                        <Insets left="100.0" />
                      </VBox.margin>
+                     <font>
+                        <Font name="System Italic" size="12.0" />
+                     </font>
                   </Label>
-                  <Button contentDisplay="GRAPHIC_ONLY" mnemonicParsing="false" prefHeight="36.0" prefWidth="62.0" text="Button">
+                  <Label fx:id="scoreLabel" prefHeight="50.0" prefWidth="197.0" text="Score: 0 Point(s)" textAlignment="RIGHT">
                      <VBox.margin>
-                        <Insets left="240.0" top="10.0" />
+                        <Insets left="80.0" />
+                     </VBox.margin>
+                     <font>
+                        <Font name="System Italic" size="24.0" />
+                     </font>
+                     <padding>
+                        <Insets left="30.0" />
+                     </padding>
+                  </Label>
+                  <Button fx:id="soundBt" contentDisplay="GRAPHIC_ONLY" mnemonicParsing="false" onAction="#soundBtHandler" prefHeight="64.0" prefWidth="126.0" text="Button">
+                     <VBox.margin>
+                        <Insets left="150.0" top="10.0" />
                      </VBox.margin>
                      <graphic>
-                        <ImageView fitHeight="27.0" fitWidth="46.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="51.0" fitWidth="65.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../img/soundon.png" />
+                              <Image url="@../img/soundOn.png" />
                            </image>
                         </ImageView>
                      </graphic>
+                  </Button>
+                  <Button fx:id="quitGameBt" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="64.0" prefWidth="126.0" text="Quit Game">
+                     <VBox.margin>
+                        <Insets left="150.0" top="10.0" />
+                     </VBox.margin>
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="playAgainBt" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="64.0" prefWidth="126.0" text="Play Again" textAlignment="CENTER">
+                     <VBox.margin>
+                        <Insets left="150.0" top="10.0" />
+                     </VBox.margin>
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
                   </Button>
                </children></VBox>
          </children>

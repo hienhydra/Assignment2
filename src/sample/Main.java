@@ -13,32 +13,28 @@
 package sample;
 
 import javafx.application.Application;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
+import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
 import java.io.File;
 
 public class Main extends Application {
-
+    @FXML
+        private static Button startGameBt;
     @Override
     public void start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("../view/GamePlay.fxml"));
+        Parent root1 = FXMLLoader.load(getClass().getResource("../view/MainMenu.fxml"));
 
-        String path = "src/audio/music.mp3";
-        Media media = new Media(new File(path).toURI().toString());
-        MediaPlayer mediaPlayer = new MediaPlayer(media);
-
-        mediaPlayer.setAutoPlay(true);
-        primaryStage.setTitle("Game");
-        primaryStage.setScene(new Scene(root));
+        primaryStage.setTitle("Menu");
+        primaryStage.setScene(new Scene(root1));
         primaryStage.setResizable(false);
         primaryStage.show();
-    }
 
+    }
 
     public static void main(String[] args) {
         launch(args);
