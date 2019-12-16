@@ -1,45 +1,49 @@
 package controller;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-import javafx.scene.Node;
-import sample.Main;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
-import javafx.stage.Stage;
+import javafx.scene.control.ChoiceBox;
 
-import java.io.File;
-import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
 public class MainMenuController implements Initializable
 {
-    private static final String gamePlayWindow = "../view/GamePlay.fxml";
+    @FXML
+        private ChoiceBox selectLevelBox;
+    ObservableList<String> levelBox = FXCollections.observableArrayList("Easy", "Medium", "Hard");
+    public static int selectedLevel = 2;
 
-    @FXML
-        private static Button soundBt;
-    @FXML
-    private void startGameBtHandler(ActionEvent event)
-    {
-        WindowController window = new WindowController((Stage) ((Node)event.getSource()).getScene().getWindow());
-        window.load(gamePlayWindow);
-    }
     @Override
     public void initialize(URL location, ResourceBundle resources)
     {
+        selectLevelBox.setValue("Medium");
+        selectLevelBox.setItems(levelBox);
         MediaController.initializeMedia();
     }
 
-    public void soundBtHandler()
+    public void soundBtHandler(ActionEvent event)
     {
+        ButtonController.soundBtHandler(event);
+    }
 
+    public void startGameBtHandler(ActionEvent event)
+    {
+        String stringLevel = selectLevelBox.getValue().toString();
+        if (stringLevel.equalsIgnoreCase("easy"))
+            selectedLevel = 3;
+        else if (stringLevel.equalsIgnoreCase("medium"))
+            selectedLevel = 2;
+        else
+            selectedLevel = 1;
+        ButtonController.startGameBtHandler(event);
+    }
+
+    public void exitGameBtHandler(ActionEvent event)
+    {
+        ButtonController.exitGameBtHandler(event);
     }
 }
