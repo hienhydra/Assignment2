@@ -30,7 +30,7 @@ public class WindowController
     }
 
     // this method is created to load a new scene for the window
-    public void load(String fxmlFile)
+    public void loadWindow(String fxmlFile)
     {
         try
         {

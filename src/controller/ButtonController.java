@@ -32,7 +32,7 @@ public class ButtonController
         MediaController.stop();
         // get the current stage and load a new scene to it
         WindowController window = new WindowController((Stage) ((Node)event.getSource()).getScene().getWindow());
-        window.load(mainMenuWindow);
+        window.loadWindow(mainMenuWindow);
     }
 
     //this method is created to handle the Exit Game Button
@@ -68,6 +68,6 @@ public class ButtonController
     {
         // get the current stage and load a new scene;
         WindowController window = new WindowController((Stage) ((Node)event.getSource()).getScene().getWindow());
-        window.load(gamePlayWindow);
+        window.loadWindow(gamePlayWindow);
     }
 }
